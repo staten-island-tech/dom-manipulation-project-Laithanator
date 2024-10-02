@@ -1,26 +1,32 @@
-const header = document.querySelector(".header");
-
-console.log(header);
-
-let student = {
-  name: "Ryan",
-  age: 15,
-  girlfriend: true,
-};
-
 const domSelectors = {
   button: document.querySelector(".btn"),
   form: document.querySelector(".form"),
 };
 
-console.log(student.name);
+let name, imgLink;
 
-domSelectors.button.addEventListener("click", function (event) {
-  console.log(event.target.parentElement);
-  event.target.parentElement.style.backgroundColor = "red";
-});
+function createCard(name, imgLink) {
+  //creating the card
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  const nameElement = document.createElement("h2");
+  nameElement.textContent = name;
+  card.appendChild(nameElement);
+}
 
 domSelectors.form.addEventListener("submit", function (event) {
   event.preventDefault();
-  console.log(document.querySelector("input").value);
+
+  let name = document.querySelector(".name").value;
+  let imgLink = document.querySelector(".imgLink").value;
+
+  name = "";
+  imgLink = "";
+
+  //checking values
+  console.log(name);
+  console.log(imgLink);
+
+  createCard(name, imgLink);
 });
