@@ -5,35 +5,22 @@ const domSelectors = {
 };
 
 let name, imgLink;
-
+let cardList = [];
+let idCounter = 0;
 function createCard(name, imgLink) {
-  //creating the card
-  const card = document.createElement("div");
-  card.classList.add("card");
+  idCounter += 1;
+  domSelectors.container.insertAdjacentHTML(
+    "beforeEnd",
+    `<div class="card"><h2 class="card-heading">${name}</h2><img class="imgLink" src="${imgLink}" alt="${name}"><button class="card-removeBtn" id="${idCounter}">Remove</button></div>`
+  );
+  cardList.push({ name, imgLink });
 
-  const cardHeading = document.createElement("h2");
-  cardHeading.textContent = name;
-  card.appendChild(cardHeading);
-  cardHeading.classList.add("card-heading");
+  console.log(cardList);
 
-  const imgElement = document.createElement("img");
-  imgElement.src = imgLink;
-  imgElement.alt = name;
-  card.appendChild(imgElement);
-  imgElement.classList.add("card-img");
-
-  const removeBtn = document.createElement("button");
-  removeBtn.textContent = "Remove";
-  removeBtn.classList.add("card-removeBtn");
-  card.appendChild(removeBtn);
-
+  const removeBtn = document.querySelector(`#${idCounter}`);
   removeBtn.addEventListener("click", function () {
-    card.remove();
+    removeBtn.parentElement.remove();
   });
-  const cardContainer = document.querySelector(".container");
-  cardContainer.appendChild(card);
-
-  domSelectors[("card", name)] = card;
 }
 
 function clearText() {
