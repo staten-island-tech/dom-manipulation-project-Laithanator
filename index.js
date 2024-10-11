@@ -4,23 +4,31 @@ const domSelectors = {
   container: document.querySelector(".container"),
 };
 
-let name, imgLink;
 let cardList = [];
 let idCounter = 0;
+
 function createCard(name, imgLink) {
   idCounter += 1;
+
   domSelectors.container.insertAdjacentHTML(
     "beforeEnd",
-    `<div class="card"><h2 class="card-heading">${name}</h2><img class="imgLink" src="${imgLink}" alt="${name}"><button class="card-removeBtn" id="${idCounter}">Remove</button></div>`
+    `<div class="card" id="card-${idCounter}">
+      <h2 class="card-heading">${name}</h2>
+      <img class="imgLink" src="${imgLink}" alt="${name}">
+      <button class="card-removeBtn" id="remove-${idCounter}">Remove</button>
+    </div>`
   );
+
   cardList.push({ name, imgLink });
 
-  console.log(cardList);
-
-  const removeBtn = document.querySelector(`#${idCounter}`);
+  const removeBtn = document.querySelector(`#remove-${idCounter}`);
   removeBtn.addEventListener("click", function () {
-    removeBtn.parentElement.remove();
+    const card = document.querySelector(`#card-${idCounter}`);
+    card.remove();
   });
+
+  console.log(`id ${idCounter}`);
+  console.log(cardList);
 }
 
 function clearText() {
@@ -34,7 +42,6 @@ domSelectors.form.addEventListener("submit", function (event) {
   let name = document.querySelector(".name").value;
   let imgLink = document.querySelector(".imgLink").value;
 
-  //checking values
   console.log(name);
   console.log(imgLink);
 
