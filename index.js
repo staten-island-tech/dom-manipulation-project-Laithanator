@@ -14,21 +14,22 @@ function createCard(name, imgLink) {
     "beforeEnd",
     `<div class="card" id="card-${idCounter}">
       <h2 class="card-heading">${name}</h2>
-      <img class="imgLink" src="${imgLink}" alt="${name}">
+      <img class="card-image" src="${imgLink}" alt="${name}">
       <button class="card-removeBtn" id="remove-${idCounter}">Remove</button>
     </div>`
   );
 
   cardList.push({ name, imgLink });
-
+  console.log(cardList);
+}
+function removebtn(idCounter, name, imgLink) {
   const removeBtn = document.querySelector(`#remove-${idCounter}`);
   removeBtn.addEventListener("click", function () {
     const card = document.querySelector(`#card-${idCounter}`);
     card.remove();
+    const item = cardList.array.forEach(card => card.name === name && card.imgLink === imgLink ?card);
+    cardList.splice(card, 1);
   });
-
-  console.log(`id ${idCounter}`);
-  console.log(cardList);
 }
 
 function clearText() {
@@ -46,5 +47,7 @@ domSelectors.form.addEventListener("submit", function (event) {
   console.log(imgLink);
 
   createCard(name, imgLink);
+  console.log("idCounter",idCounter)
+  removebtn(idCounter,name,imgLink)
   clearText();
 });

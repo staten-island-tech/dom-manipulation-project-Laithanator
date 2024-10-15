@@ -89,14 +89,8 @@ h1 {
   box-shadow: -10px 10px 20px rgb(0, 0, 0);
 }
 
-.card-img {
-  height: 75%;
-  width: 100%;
-  object-fit: contain;
-}
-
 .card-heading {
-  font-size: 3vw;
+  font-size: 2vw;
   color: white;
   object-fit: cover;
   margin-bottom: 5%;
@@ -104,9 +98,17 @@ h1 {
 
 .card-removeBtn {
   margin: 0 auto;
+  margin-top: auto;
+  margin-bottom: auto;
   width: 15rem;
   font-size: 1.25vw;
   background: radial-gradient(circle, #f7fa56, #da290a);
+}
+
+.card-img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 900px) {
@@ -117,6 +119,7 @@ h1 {
     justify-content: center;
   }
   .card {
+    height: 60vh;
     width: 90%;
     min-width: 100px;
   }
