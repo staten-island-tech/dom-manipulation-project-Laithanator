@@ -32,9 +32,9 @@ function removebtn(idCounter, name, imgLink) {
   });
 }
 
-function clearText() {
-  document.querySelector(".name").value = "";
-  document.querySelector(".imgLink").value = "";
+function clearText(name, imgLink) {
+  name = "";
+  imgLink = "";
 }
 
 domSelectors.form.addEventListener("submit", function (event) {
@@ -43,11 +43,7 @@ domSelectors.form.addEventListener("submit", function (event) {
   let name = document.querySelector(".name").value;
   let imgLink = document.querySelector(".imgLink").value;
 
-  console.log(name);
-  console.log(imgLink);
-
   createCard(name, imgLink);
-  console.log("idCounter",idCounter)
   removebtn(idCounter,name,imgLink)
-  clearText();
+  clearText(name, imgLink);
 });
