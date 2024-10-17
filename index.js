@@ -13,13 +13,16 @@ function createCard(name, imgLink) {
   domSelectors.container.insertAdjacentHTML(
     "beforeEnd",
     `<div class="card" id="card-${idCounter}">
-      <h2 class="card-heading">${name}</h2>
-      <img class="card-image" src="${imgLink}" alt="${name}">
+      <h2 class="card-heading" id="heading-${idCounter}">${name}</h2>
+      <img class="card-img" id="img-${idCounter}" src="${imgLink}" alt="${name}">
       <button class="card-removeBtn" id="remove-${idCounter}">Remove</button>
     </div>`
   );
 
-  cardList.push({ name, imgLink });
+  const nameID = `heading-${idCounter}`;
+  const imgID = `img-${idCounter}`;
+
+  cardList.push({ name, nameID, imgLink, imgID });
   console.log(cardList);
 }
 function removebtn(idCounter, name, imgLink) {
@@ -27,14 +30,16 @@ function removebtn(idCounter, name, imgLink) {
   removeBtn.addEventListener("click", function () {
     const card = document.querySelector(`#card-${idCounter}`);
     card.remove();
-    const item = cardList.array.forEach(card => card.name === name && card.imgLink === imgLink ?card);
-    cardList.splice(card, 1);
+    const index = cardList.findIndex(
+      (object) => object.nameID === `heading-${idCounter}`
+    );
+    cardList.splice(index, 1);
   });
 }
 
-function clearText(name, imgLink) {
-  name = "";
-  imgLink = "";
+function clearText() {
+  document.querySelector(".name").value = "";
+  document.querySelector(".imgLink").value = "";
 }
 
 domSelectors.form.addEventListener("submit", function (event) {
@@ -44,6 +49,7 @@ domSelectors.form.addEventListener("submit", function (event) {
   let imgLink = document.querySelector(".imgLink").value;
 
   createCard(name, imgLink);
-  removebtn(idCounter,name,imgLink)
+  removebtn(idCounter, name, imgLink);
   clearText(name, imgLink);
+  console.log(cardList);
 });
